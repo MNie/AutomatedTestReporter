@@ -1,0 +1,6 @@
+FSharp.Data
+group Server
+FSharp.Core
+Suave
+Microsoft.DotNet.Watcher.Tools
+Fable.Remoting.Suave
