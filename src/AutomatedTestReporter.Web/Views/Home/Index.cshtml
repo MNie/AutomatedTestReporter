@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="aboutPage">
+    {{ message }}
+</div>
+
+<script>
+    var aboutPage = new Vue({
+        el: '#aboutPage',
+        data: {
+            message: 'Hello Vue! in About Page'
+        }
+    });
+</script>
