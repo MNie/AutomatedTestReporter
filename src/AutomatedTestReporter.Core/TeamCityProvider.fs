@@ -54,8 +54,8 @@ type Test =
         Status: string
     }
 
-type Reporter() =
-    let baseHref = "http://teamcity:8080"
+type Reporter(teamcityMachine: string) =
+    let baseHref = sprintf "http://%s:8080" teamcityMachine
     let url postfix = sprintf "%s%s" baseHref postfix
     let getProject(projectName: string) =
         let postfix = sprintf "/app/rest/projects/id:%s" projectName
@@ -94,9 +94,8 @@ type Reporter() =
         )
 
     member this.GetTestResultsFor(projectName: string): seq<seq<Test>> =
-        let projects = getProject projectName
-        let builds = getBuilds projects
-        let latestBuild = getLatestBuild builds
-        let result = getResult latestBuild
-        let testResult = getTestResult result
-        testResult
+        getProject projectName
+        |> getBuilds
+        |> getLatestBuild
+        |> getResult
+        |> getTestResult
